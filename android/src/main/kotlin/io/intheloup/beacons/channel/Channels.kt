@@ -91,8 +91,10 @@ class Channels(private val permissionClient: PermissionClient,
         }
 
         override fun onCancel(arguments: Any?) {
-            beaconsClient.removeRequest(request!!)
-            request = null
+            request?.let{ req ->
+	                beaconsClient.removeRequest(req)
+	                request = null
+	            }
         }
     }
 
